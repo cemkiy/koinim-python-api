@@ -54,6 +54,7 @@ class splinter_process:
             self.browser.click_link_by_href('/deposit/bitcoin/')
             button = self.browser.find_by_tag('button')
             button.click()
+            return True
         except Exception as e:
             print e
             return False
@@ -79,7 +80,7 @@ class splinter_process:
             return False
 
     #needs login_with_your_account
-    def set_bitcoin(self, adress, amount_integer, amount_decimal=0):
+    def send_bitcoin(self, adress, amount_integer, amount_decimal=0):
         try:
             self.login_with_your_account()
             self.browser.click_link_by_href('/withdraw/bitcoin/')
@@ -88,6 +89,7 @@ class splinter_process:
             self.browser.fill('adress', str(adress))
             button = self.browser.find_by_id('modal-fire-button')
             button.click()
+            return True
         except Exception as e:
             print e
             return False
@@ -105,6 +107,54 @@ class splinter_process:
                 else:
                     index = index + 1
             return self.browser.find_by_tag('td')[index+1].value
+        except Exception as e:
+            print e
+
+    #needs login_with_your_account
+    def buy_bitcoin_by_tl(self, total_integer, total_decimal):
+        try:
+            self.login_with_your_account()
+            self.browser.fill('total_integer', str(total_integer))
+            self.browser.fill('total_decimal', str(total_decimal))
+            button = self.browser.self.browser.find_by_id('trade-buy-btc-submit')
+            button.click()
+            return True
+        except Exception as e:
+            print e
+
+    #needs login_with_your_account
+    def buy_bitcoin_by_btc(self, amount_integer, amount_decimal):
+        try:
+            self.login_with_your_account()
+            self.browser.fill('amount_integer', str(amount_integer))
+            self.browser.fill('amount_decimal', str(amount_decimal))
+            button = self.browser.self.browser.find_by_id('trade-buy-btc-submit')
+            button.click()
+            return True
+        except Exception as e:
+            print e
+
+    #needs login_with_your_account
+    def sell_bitcoin_by_tl(self, total_integer, total_decimal):
+        try:
+            self.login_with_your_account()
+            self.browser.fill('total_integer', str(total_integer))
+            self.browser.fill('total_decimal', str(total_decimal))
+            button = self.browser.self.browser.find_by_id('trade-sell-btc-submit')
+            button.click()
+            return True
+        except Exception as e:
+            print e
+
+    #needs login_with_your_account
+    def sell_bitcoin_by_btc(self, amount_integer, amount_decimal):
+        try:
+            self.login_with_your_account()
+            self.browser.fill('amount_integer', str(amount_integer))
+            self.browser.fill('amount_decimal', str(amount_decimal))
+            button = self.browser.self.browser.find_by_id('trade-sell-btc-submit')
+            button.click()
+            return True
         except Exception as e:
             print e
 
